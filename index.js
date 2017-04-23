@@ -26,7 +26,7 @@ const recordData = ctx => {
       throw new Error(`Sent ${typeof body} instead of a numeric value`);
     }
 
-    ctx.io.emit(type, value);
+    ctx.io.emit(type, { value });
   }
 };
 
