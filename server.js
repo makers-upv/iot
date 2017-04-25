@@ -4,7 +4,7 @@ const server = require('server');
 const { get, post } = server.router;
 const { file } = server.reply;
 const checkData = require('./check-data.js');
-
+const simulate = require('./simulate');
 
 
 // Esta función se ejecuta cuando arduino o raspberry pi envían datos
@@ -37,4 +37,30 @@ const routes = [
 
 
 
-server({ connect: { csrf: false } }, routes);
+const launched = server({ connect: { csrf: false } }, routes);
+
+
+
+
+
+// SIMULACIONES; en vuestro proyecto esto no lo tendríais
+launched.then(ctx => {
+
+  // Simular la temperatura
+  simulate('temperature', {
+    size: 1,
+    interval: 200,
+    initial: 21,
+    io: ctx.io
+  });
+
+  // Simular la luz
+  simulate('light', {
+    size: 10,
+    interval: 1000,
+    initial: 50,
+    io: ctx.io
+  });
+
+  // Otras simulaciones
+});

@@ -1,47 +1,35 @@
 const socket = io();
 const ctx = document.getElementById('temperature').getContext('2d');
-const charts = {};
 
-const init = new Date();
-
-const updateChart = ({ type, x, y }) => {
-  let set = charts[type].config.data.datasets[0];
-  if (set.data.length > 200) {
-    set.data = set.data.slice(-200);
-  }
-  set.data.push({ x, y });
-  charts[type].update();
+const charts = {
+  temperature: new SmoothieChart({ maxValue: 50, minValue: 0 }),
+  light: new SmoothieChart({ maxValue: 100, minValue: 0 })
 };
 
+charts.temperature.streamTo(document.getElementById("temperature"), 1000);
+charts.light.streamTo(document.getElementById("light"), 1000);
+
+// Data
+const temperature = new TimeSeries();
+const light = new TimeSeries();
+
 socket.on('temperature', data => {
-  updateChart({ type: 'temperature', x: new Date(), y: data.value });
+  temperature.append(new Date().getTime(), data);
 });
 
-setInterval(() => {
-  let set = charts.temperature.config.data.datasets[0];
-  let y = (set.data[set.data.length - 1] || { y: 25 }).y + Math.random() - 0.5;
-  updateChart({ type: 'temperature', x: new Date(), y  });
-}, 100);
+socket.on('light', data => {
+  light.append(new Date().getTime(), data);
+});
 
+// Add to SmoothieChart
+charts.temperature.addTimeSeries(temperature, {
+  strokeStyle: '#f55',
+  fillStyle: 'rgba(255, 0, 0, 0.4)',
+  lineWidth: 3
+});
 
-charts.temperature = new Chart(ctx, {
-  type: 'line',
-  data: {
-    datasets: [{
-      label: 'Temperatura',
-      pointRadius: 0,
-      data: []
-    }]
-  },
-  options: {
-    scales: {
-      xAxes: [{
-        type: 'time',
-        time: { displayFormats: { quarter: 'HH:MM:SS' } }
-      }],
-      yAxes: [{
-        ticks: { beginAtZero:true, max: 50 }
-      }]
-    }
-  }
+charts.light.addTimeSeries(light, {
+  strokeStyle: '#ff5',
+  fillStyle: 'rgba(255, 255, 255, 0.3)',
+  lineWidth: 3
 });

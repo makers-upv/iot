@@ -9,7 +9,7 @@
 
     <!--Importar materialize.css y la fuente de iconos de Google-->
     <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link href="materialize.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css" rel="stylesheet">
 
     <!-- Nuestra propia hoja de estilos (public/style.css) -->
     <link type="text/css" rel="stylesheet" href="style.css" media="screen,projection"/>
@@ -25,10 +25,13 @@
 
       <!-- Cada section va a ser un gráfico con su explicación -->
       <section>
-        <h1>Temperatura</h1>
+        <h1>Casa</h1>
 
-        <!-- Chart.js usa canvas para renderizar las gráficas -->
-        <canvas id="temperature"></canvas>
+        <h2>Temperatura</h2>
+        <canvas id="temperature" width="800" height="200"></canvas>
+
+        <h2>Luz</h2>
+        <canvas id="light" width="800" height="200"></canvas>
       </section>
     </main>
 
@@ -37,6 +40,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.bundle.min.js"></script>
     <script src="https://unpkg.com/socket.io-client@1.7.3/dist/socket.io.slim.min.js"></script>
+    <script src="https://unpkg.com/smoothie@1"></script>
 
     <!-- Nuestra lógica en javascript para el navegador (public/javascript.js) -->
     <script src="javascript.js"></script>
