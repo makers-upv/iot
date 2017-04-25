@@ -1,31 +1,44 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <!-- Estándar para las páginas web. NO LO CAMBIES -->
     <meta charset="utf-8" />
+
+    <!-- Nombre en la pestaña y en la barra del navegador -->
     <title>Gráficos en tiempo real</title>
 
-    <!--Import Google Icon Font-->
+    <!--Importar materialize.css y la fuente de iconos de Google-->
     <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="materialize.css" rel="stylesheet">
 
-    <!--Import materialize.css-->
-    <link type="text/css" rel="stylesheet" href="style.css"  media="screen,projection"/>
+    <!-- Nuestra propia hoja de estilos (public/style.css) -->
+    <link type="text/css" rel="stylesheet" href="style.css" media="screen,projection"/>
 
-    <!--Let browser know website is optimized for mobile-->
+    <!-- Este sitio está optimizado para móvil -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   </head>
 
   <body>
 
+    <!-- Pondremos todo nuestro HTML dentro de main -->
     <main>
-      <h1>Temperatura</h1>
 
-      <canvas id="temperature"></canvas>
+      <!-- Cada section va a ser un gráfico con su explicación -->
+      <section>
+        <h1>Temperatura</h1>
+
+        <!-- Chart.js usa canvas para renderizar las gráficas -->
+        <canvas id="temperature"></canvas>
+      </section>
     </main>
 
+    <!-- Librerías externas de Javascript a cargar -->
     <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.bundle.min.js"></script>
     <script src="https://unpkg.com/socket.io-client@1.7.3/dist/socket.io.slim.min.js"></script>
+
+    <!-- Nuestra lógica en javascript para el navegador (public/javascript.js) -->
     <script src="javascript.js"></script>
   </body>
 </html>

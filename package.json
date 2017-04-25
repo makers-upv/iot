@@ -2,9 +2,9 @@
   "name": "iot",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "start": "node index.js",
+    "start": "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -12,6 +12,6 @@
   "license": "MIT",
   "dependencies": {
     "mz": "^2.6.0",
-    "server": "^1.0.0-alpha.36"
+    "server": "^1.0.0-alpha.39"
   }
 }
