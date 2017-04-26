@@ -51,7 +51,8 @@ launched.then(ctx => {
     size: 1,
     interval: 200,
     initial: 21,
-    io: ctx.io
+    io: ctx.io,
+    max: 50
   });
 
   // Simular la luz
@@ -59,7 +60,8 @@ launched.then(ctx => {
     size: 10,
     interval: 1000,
     initial: 50,
-    io: ctx.io
+    io: ctx.io,
+    max: 100
   });
 
   // Otras simulaciones
